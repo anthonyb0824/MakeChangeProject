@@ -7,29 +7,51 @@ public class CashRegister {
 	public static void main(String[] args) {
 
 		Scanner kb = new Scanner(System.in);
+		boolean buySomthing = true;
+		
+		while(buySomthing==true) {
+			// The user is prompted asking for the price of the item.
+			System.out.println("Enter price of the item:");
+			double priceOfIteam = (kb.nextDouble()) * 100;
+			System.err.println(priceOfIteam);
 
-		// The user is prompted asking for the price of the item.
-		System.out.println("Enter price of the item:");
-		double priceOfIteam = (kb.nextDouble()) * 100;
-		System.out.println(priceOfIteam);
+			// The user is then prompted asking how much money was tendered by the customer.
+			System.out.println("Enter the amount tendered by the customer:");
+			double pricePaid = (kb.nextDouble()) * 100;
+			
 
-		// The user is then prompted asking how much money was tendered by the customer.
-		System.out.println("Enter the amount tendered by the customer:");
-		double pricePaid = (kb.nextDouble()) * 100;
-		System.out.println(pricePaid);
-
-		// Display an appropriate message if the customer provided too little money or
-		// the exact amount.
-		if (priceOfIteam == pricePaid) {
-			System.out.print("No Change necessary");
-		} else if (priceOfIteam > pricePaid) {
-			System.err.println("You need to pay more than that!!");
-		} else if (pricePaid > priceOfIteam) {
-			giveChange(pricePaid, priceOfIteam);
+			// Display an appropriate message if the customer provided too little money or
+			// the exact amount.
+			if (priceOfIteam == pricePaid) {
+				System.out.print("No Change necessary");
+			} else if (priceOfIteam > pricePaid) {
+				System.err.println("You need to pay more than that!!");
+				continue;
+			} else if (pricePaid > priceOfIteam) {
+				giveChange(pricePaid, priceOfIteam);
+			}
+			// If the amount tendered is more than the cost of the item,
+			// display the number of bills and coins that should be given to the customer.
+			System.out.print("Would you like to buy somthing else? (Y/N)");
+			String anwser = (kb.next()).toLowerCase();
+			
+			switch(anwser) {
+			case "yes":
+			case "sure":
+			case "y":
+				buySomthing = true;
+				break;
+			case "no":
+			case "n":
+			case "nope":
+				buySomthing = false;
+				break;
+			default:
+				System.err.println("Get out of my store!!");
+				buySomthing = false;
+			}
 		}
-		// If the amount tendered is more than the cost of the item,
-		// display the number of bills and coins that should be given to the customer.
-
+		
 		kb.close();
 	}
 
@@ -50,7 +72,7 @@ public class CashRegister {
 
 		while (changeDue != 0) {
 
-			// check 10
+			// check $10
 			if (changeDue >= 1000.) {
 				tenB++;
 				changeDue = changeDue - 1000.0;
@@ -148,13 +170,13 @@ public class CashRegister {
 			text += p + " penny.";
 		}
 		if (p > 1) {
-			text += p + " pennies.";
+			text += p + " pennies.\n";
 		}
 
 		if (text.endsWith(", ")) {
 			text = text.trim();
 			text = text.substring(0, text.length() - 1);
-			text += ".";
+			text += ".\n";
 		}
 
 		System.out.print(text);
