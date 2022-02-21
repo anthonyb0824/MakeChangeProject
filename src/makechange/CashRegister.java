@@ -13,7 +13,7 @@ public class CashRegister {
 			// The user is prompted asking for the price of the item.
 			System.out.println("Enter price of the item:");
 			double priceOfIteam = (kb.nextDouble()) * 100;
-			System.err.println(priceOfIteam);
+			
 
 			// The user is then prompted asking how much money was tendered by the customer.
 			System.out.println("Enter the amount tendered by the customer:");
@@ -23,9 +23,9 @@ public class CashRegister {
 			// Display an appropriate message if the customer provided too little money or
 			// the exact amount.
 			if (priceOfIteam == pricePaid) {
-				System.out.print("No Change necessary");
+				System.out.println("No Change necessary\n");
 			} else if (priceOfIteam > pricePaid) {
-				System.err.println("You need to pay more than that!!");
+				System.err.println("You need to pay more than that!!\n");
 				continue;
 			} else if (pricePaid > priceOfIteam) {
 				giveChange(pricePaid, priceOfIteam);
@@ -105,7 +105,7 @@ public class CashRegister {
 				changeDue = changeDue - 5;
 			} // check .01
 			else if (changeDue >= 1) {
-				// System.err.println(".01\n");
+				// System.err.println(".01\n ");
 				p++;
 				changeDue = changeDue - 1;
 			}
@@ -179,7 +179,7 @@ public class CashRegister {
 			text += ".\n";
 		}
 
-		System.out.print(text);
+		System.out.println(text);
 
 	}
 
